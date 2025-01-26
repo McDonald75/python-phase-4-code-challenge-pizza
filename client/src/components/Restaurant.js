@@ -12,7 +12,7 @@ function Home() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${resources}/restaurants/${id}`).then((r) => {
+    fetch(`/restaurants/${id}`).then((r) => {
       if (r.ok) {
         r.json().then((restaurant) =>
           setRestaurant({ data: restaurant, error: null, status: "resolved" })

@@ -29,7 +29,7 @@ class Restaurant(db.Model, SerializerMixin):
             'id':self.id,
             'name':self.name,
             'address':self.address,
-            # 'Pizzas':[rpiza.pizza.to_dict() for rpiza in restaurant_pizzas]
+            # 'restaurant_pizzas':[rpiza.to_dict() for rpiza in self.restaurant_pizzas]
         }
     def __repr__(self):
         return f"<Restaurant {self.name}>"
@@ -76,8 +76,8 @@ class RestaurantPizza(db.Model, SerializerMixin):
             'price':self.price,
             'restaurant_id':self.restaurant_id,
             'pizza_id':self.pizza_id,
-            'Restaurant':self.restaurant.to_dict(),
-            'Pizza':self.pizza.to_dict()
+            # 'Restaurant':self.restaurant.to_dict(),
+            # 'pizza':self.pizza.to_dict()
         }
     # add validation
     @validates('price')
