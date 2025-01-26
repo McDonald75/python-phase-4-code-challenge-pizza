@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PizzaForm from "./PizzaForm";
+import { resources } from "../config";
 
 function Home() {
   const [{ data: restaurant, error, status }, setRestaurant] = useState({
@@ -11,7 +12,7 @@ function Home() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`/restaurants/${id}`).then((r) => {
+    fetch(`${resources}/restaurants/${id}`).then((r) => {
       if (r.ok) {
         r.json().then((restaurant) =>
           setRestaurant({ data: restaurant, error: null, status: "resolved" })
