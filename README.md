@@ -17,7 +17,7 @@ Depending on your preference, you can either check your API by:
 - Running the React application in the browser and interacting with the API via
   the frontend
 
-You can import `challenge-1-pizzas.postman_collection.json` into Postman by
+You can import `challenge-1-pizzas.postman_collection.json` into Postman, by
 pressing the `Import` button.
 
 ![import postman](https://curriculum-content.s3.amazonaws.com/6130/phase-4-code-challenge-instructions/import_collection.png)
