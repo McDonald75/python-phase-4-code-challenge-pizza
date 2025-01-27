@@ -37,9 +37,14 @@ def get_restaurants():
 @app.route('/restaurants/<int:id>')
 def get_restaurant_by_id(id):
     restaurant = Restaurant.query.get(id)
+    def map_pizzas(rp):
+        object = rp.to_dict()
+        object['pizza'] = rp.pizza.to_dict()
+        return object
+        
     if restaurant:
         object = restaurant.to_dict()
-        object['restaurant_pizzas'] = [rp.to_dict() for rp in restaurant.restaurant_pizzas]
+        object['restaurant_pizzas'] = [map_pizzas(rp) for rp in restaurant.restaurant_pizzas]
         return make_response(jsonify(object), 200)
     return make_response(jsonify({"error":"Restaurant not found"}), 404)
 @app.route('/restaurants/<int:id>',methods=['DELETE'])
@@ -63,6 +68,7 @@ def add_restaurant_pizza():
         db.session.commit()
         object = restauran_pizza.to_dict()
         object['restaurant']=restauran_pizza.restaurant.to_dict()
+        object['pizza']=restauran_pizza.pizza.to_dict()
         return make_response(jsonify(object), 201)
     except Exception as e: 
         return make_response(jsonify({'errors':[str(e)]}),400)
